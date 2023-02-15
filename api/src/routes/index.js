@@ -1,7 +1,6 @@
 const { Router } = require('express');
 // Importar todos los routers;
-const {createDog, getDogs, getDogById} = require('./home.js');
-
+const {createDog, getDogs, getDogById} = require('./dogs.js');
 
 const router = Router();
 
