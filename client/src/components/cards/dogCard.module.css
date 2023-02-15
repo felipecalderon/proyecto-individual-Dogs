@@ -1,6 +1,6 @@
 .cardClient {
     background: #b96a55;
-    width: 13rem;
+    width: 15rem;
     padding-top: 25px;
     padding-bottom: 25px;
     padding-left: 20px;
@@ -10,12 +10,13 @@
     border-radius: 10px;
     text-align: center;
     color: #fff;
-    font-family: "Poppins", sans-serif;
     transition: all 0.3s ease;
+    text-decoration: none;
   }
-  
+
   .cardClient:hover {
-    transform: translateY(-10px);
+    box-shadow: 0 6px 50px #e79b86;
+    transform: scale(1.1);
   }
   
   .userPicture {
@@ -57,28 +58,6 @@
     margin: 20px 0;
     background: #e79b86;
   }
-  
-  .cardFooter a {
-    position: relative;
-    margin-right: 15px;
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .cardFooter a:last-child {
-    margin-right: 0;
-  }
-  
-  .cardFooter a svg {
-    width: 1.1rem;
-    fill: currentColor;
-  }
-  
-  .cardFooter a .tooltip-social:after {
-    border-top-color: #262626;
-  }
-  
-  .cardFooter:hover .tooltip-social {
-    opacity: 1;
-    transform: translate(-50%, -130%);
+  .cardFooter{
+    text-align: left;
   }

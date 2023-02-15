@@ -1,0 +1,96 @@
+.fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  
+.input {
+    display: block;
+    width: 100%;
+    height: 3em;
+    padding: 16px 8px;
+    border: 0;
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    background: rgba(255, 255, 255, 0.97);
+    color: #212121;
+    outline: 0;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .formLabel fieldset {
+    position: relative;
+  }
+  .formLabel fieldset:first-child input {
+    border-radius: 4px 4px 0 0;
+  }
+  .formLabel fieldset:last-child input {
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
+  }
+  .formLabel fieldset + fieldset {
+    border-top: 1px solid #ddd;
+  }
+  .formLabel .label {
+    position: absolute;
+    top: 15px;
+    left: 8px;
+    color: #909090;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .formCss input[data-empty=false], .formCss input:valid, .formCss input:focus {
+    padding: 22px 8px 10px;
+  }
+  .formCss input:focus {
+    outline: 0;
+    background: white;
+  }
+  .formCss input[data-empty=false] + label, .formCss input:valid + label, .formCss input:focus + label {
+    color: #b96a55;
+    font-weight: 700;
+    font-size: 12px;
+    transform: translate3d(0, -10px, 0);
+  }
+  
+  .form-js-label input[data-empty=false], .form-js-label input:focus {
+    padding: 22px 8px 10px;
+  }
+  .form-js-label input:focus {
+    outline: 0;
+    background: white;
+  }
+  .form-js-label input[data-empty=false] + label, .form-js-label input:focus + label {
+    color: #d68756;
+    font-weight: 700;
+    font-size: 12px;
+    transform: translate3d(0, -10px, 0);
+  }
+  
+  .section {
+    width: 80%;
+    min-width: 320px;
+    margin: 100px auto;
+    text-align: center;
+    text-shadow: -1px -1px rgba(0, 0, 0, 0.1);
+    color: #fff;
+  }
+  .section h2 {
+    margin: 0 0 0.5em;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+  .section p {
+    margin: 0 0 1em;
+  }
+  .section form {
+    max-width: 420px;
+    margin: 0 auto 20px;
+  }

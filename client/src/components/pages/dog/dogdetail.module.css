@@ -1,0 +1,63 @@
+.detail{
+    display: flex;
+    color: white;
+    flex-direction: column;
+    gap: .8em;
+	margin-top: 1em;
+}
+
+.container{
+	display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.img{
+	max-width: 100%;
+}
+
+.imageLeft, .imageRight
+{
+	max-width: 100%;
+
+}
+
+@media (min-width: 20em)
+{
+	.imageLeft, .imageRight
+	{
+		display: flex;
+		align-items: center;
+	}
+
+	.imageLeft img
+	{
+		margin-right: 1em;
+		float: left; /* fallback */
+	}
+
+	.imageRight img
+	{
+		order: 1;
+		margin-left: 1em;
+		float: right; /* fallback */
+	}
+	
+	/* clearfix for fallback */
+	.imageLeft::after,
+	.imageRight::after
+	{
+		content: "";
+  	display: block;
+		clear: both;
+	}
+}
+
+@media (min-width: 30em)
+{
+	.imageLeft img, .imageRight img
+	{
+		flex-shrink: 0;
+	}
+}

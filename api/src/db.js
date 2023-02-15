@@ -1,5 +1,29 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
+const {
+  DB_NAME, DB_USER, DB_PASSWORD, DB_HOST,
+} = process.env;
+
+const sequelize = new Sequelize(
+  DB_NAME,
+  DB_USER,
+  DB_PASSWORD,
+  {
+    host: DB_HOST,
+    dialect: 'postgres',
+    logging: false,
+    native: false
+  });
+  
+
+sequelize.authenticate().then(() => {
+  console.log('Conexión exitosa 👌');
+}).catch((error) => {
+  console.error('🤯 Error al conectar: ', error);
+});
+
+// sequelize.models()
+/*
 const fs = require('fs');
 const path = require('path');
 const {
@@ -16,8 +40,8 @@ const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
-  .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
-  .forEach((file) => {
+.filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
+.forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
 
@@ -39,3 +63,8 @@ module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };
+*/
+module.exports = {
+  ...sequelize.models,
+  conn: sequelize
+}

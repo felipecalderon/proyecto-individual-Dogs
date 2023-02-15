@@ -1,0 +1,24 @@
+.table {
+    color: white;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    transition: all 300ms;
+
+  }
+
+  .data {
+    text-align: center;
+    
+  }
+  
+  .tr:nth-child(even){
+    background-color: #b96a55
+  }
+  
+  .tr:hover{
+  transition: all 300ms;
+  background-color: #925240;
+}
+

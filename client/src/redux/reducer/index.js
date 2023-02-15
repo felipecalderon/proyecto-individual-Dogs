@@ -2,41 +2,72 @@
 
 // Importa las action-types aquí.
 import {
-    GET_ALL_DOGS,
-    GET_DOG_DETAIL,
-    CREATE_DOG,
-    DELETE_DOG,
+   GET_ALL_DOGS,
+   GET_DOG_DETAIL,
+   CREATE_DOG,
+   DELETE_DOG,
+   BREED_DOG_ORDER,
+   BREED_DOG_FILTER
+
  } from '../actions';
  
  const initialState = {
     dogs: [],
+    filteredDogs: [],
     dogDetail: {},
  };
  
  const rootReducer = (state = initialState, action) => {
-    // eslint-disable-next-line default-case
-    switch (action.type) {
-     case GET_ALL_DOGS: return {
+   const liveFilter = (breed) => {
+      return breed.name.toUpperCase().includes(action.payload) 
+      || breed.id === Number(action.payload) 
+   }
+
+   switch (action.type) {
+   case GET_ALL_DOGS: return {
         ...state,
-        dogs: action.payload
-     }
-     
-     case GET_DOG_DETAIL: return {
-        ...state,
-        dogDetail: action.payload
-     }
-     
-     case CREATE_DOG: return {
-        ...state,
-        dogs: [...state.dogs, action.payload]
-     }
-  
-     case DELETE_DOG: return {
-        ...state,
-        dogs: state.dogs.filter(dog => dog.id !== action.payload)
-     }
-  
-     default: return {
+        dogs: action.payload,
+        filteredDogs: action.payload
+      }
+
+   case BREED_DOG_FILTER: return {
+          ...state,
+          filteredDogs: state.dogs.filter(liveFilter)
+      }
+   case GET_DOG_DETAIL: return {
+      ...state,
+      dogDetail: state.dogs.find(dog => dog.id === Number(action.payload))
+   }
+
+   case BREED_DOG_ORDER: {
+      if(action.payload === "AZ") return {
+         ...state,
+         filteredDogs: state.dogs.sort((breed0, breed1) => {
+         let nombre0 = breed0.name.toUpperCase();
+         let nombre1 = breed1.name.toUpperCase();
+         return (nombre0 < nombre1) 
+            ? -1 
+            : (nombre0 > nombre1) 
+            ? 1 
+            : 0;
+      })}
+      if(action.payload === "ZA") return {
+         ...state,
+         filteredDogs: state.dogs.sort((breed0, breed1) => {
+            let nombre0 = breed0.name.toUpperCase();
+            let nombre1 = breed1.name.toUpperCase();
+            return (nombre0 > nombre1) 
+               ? -1 
+               : (nombre0 < nombre1) 
+               ? 1 
+               : 0;
+      })}
+      if(action.payload === "RANDOM") return {
+         ...state,
+         filteredDogs: state.dogs.sort(() => Math.random() - 0.5)
+      }
+   }
+   default: return {
         ...state
      }
     }

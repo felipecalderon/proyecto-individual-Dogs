@@ -1,10 +1,12 @@
 import DogCard from "./DogCard"
 import styles from './cards.module.css'
-const Cards = ({dogs}) => {
+import { useSelector } from "react-redux"
+const Cards = () => {
+    const {filteredDogs} = useSelector((state) => state)
     return (
         <div className={styles.cardsFlex}>
         { 
-            dogs?.map((dog) => <DogCard key={dog.id} dog={dog} /> )
+            filteredDogs?.map((dog) => <DogCard key={dog.name} dog={dog} /> )
         }
         </div>
         )    
