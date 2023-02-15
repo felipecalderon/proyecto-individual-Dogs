@@ -1,12 +1,14 @@
 const { Router } = require('express');
 // Importar todos los routers;
-const home = require('./home.js');
+const {createDog, getDogs, getDogById} = require('./home.js');
 
 
 const router = Router();
 
 // Configurar los routers
-router.use('/dog', home.root);
+router.get('/dogs', getDogs);
+router.get('/dogs/:id', getDogById);
+router.post('/dogs', createDog);
 
 
 module.exports = router;

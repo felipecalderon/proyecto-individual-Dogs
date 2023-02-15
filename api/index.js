@@ -19,7 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { PORT } = process.env
+const { PORT } = process.env || 3002
 
 conn.sync({ force: true }).then(() => {
   server.listen(PORT, () => {
