@@ -9,9 +9,7 @@ const server = express();
 server.use(cookieParser());
 server.use(express.json());
 server.use(morgan('dev'));
-server.use(cors({
-    origin: '*'
-  }))
+server.use(cors())
 
 server.use('/', routes);
 

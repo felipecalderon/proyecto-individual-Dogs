@@ -1,7 +1,7 @@
 const { DataTypes, Sequelize } = require('sequelize');
 const {conn} = require('../db')
 
-const Dog = conn.define('dogs', {
+const Dog = conn.define('dog', {
   id: {
     type: DataTypes.UUID,
     defaultValue: Sequelize.UUIDV4,

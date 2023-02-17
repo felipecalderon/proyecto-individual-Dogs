@@ -1,6 +1,8 @@
 const { Router } = require('express');
 // Importar todos los routers;
-const {createDog, getDogs, getDogById} = require('./dogs.js');
+const {createDog, getDogs, getDogById} = require('./dogs');
+const {createTemperament, getTemperaments} = require('./temperament');
+
 
 const router = Router();
 
@@ -8,6 +10,10 @@ const router = Router();
 router.get('/dogs', getDogs);
 router.get('/dogs/:id', getDogById);
 router.post('/dogs', createDog);
+
+router.post('/temperaments', createTemperament);
+router.get('/temperaments', getTemperaments);
+
 
 
 module.exports = router;

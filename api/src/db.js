@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
     dialect: 'postgres',
     logging: false,
   });
-  
+
 sequelize.authenticate().then(() => {
   console.log('Conexión exitosa 👌');
 }).catch((error) => {
