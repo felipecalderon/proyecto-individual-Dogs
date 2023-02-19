@@ -1,25 +1,27 @@
 const { Temperament } = require('../models/relations')
+const {newTemp} = require('../controllers/temperament.controller')
 
 const createTemperament = async (req, res) => {
     try {
-        const {name} = req.body
-        if(name){
-            const newTemp = await Temperament.findOrCreate({
-                where: {
-                    name
-                }
-            })
-            return res.json(newTemp)
-        }
-        throw "Debes ingresar nombre"
+        const data = await newTemp(req.body)
+        return res.json(data)
     } catch (error) {
-        res.json({error})
+        res.status(404).json(error)
     }
 }
 
 const getTemperaments = async (req, res) => {
     try {
-        const resApi = await fetch('https://api.thedogapi.com/v1/breeds')
+        const data = await Temperament.findAll()
+        res.json(data)
+    } catch (error) {
+        res.status(404).json(error)
+    }
+}
+
+const insertDataApi = async (req, res) => {
+    try {
+        const resApi = await fetch(process.env.URI_API)
         const dataApi = await resApi.json()
         const temperamentos = []
 
@@ -46,7 +48,7 @@ const getTemperaments = async (req, res) => {
         const allTemps = await Temperament.findAll()
         res.json(allTemps)
     } catch (error) {
-        res.json(error)
+        res.status(404).json(error)
     }
 }
-module.exports = {createTemperament, getTemperaments}
+module.exports = {createTemperament, getTemperaments, insertDataApi}

@@ -1,12 +1,14 @@
-const {Dog} = require('./dog')
-const {Temperament} = require('./temperament')
+const { Dog } = require('./dog')
+const { Temperament } = require('./temperament')
 
 Temperament.belongsToMany(Dog, {
-    through: "dogTemperament"
+    through: "dogTemperament",
+    timestamps: false
 })
 
 Dog.belongsToMany(Temperament, {
-    through: "dogTemperament"
+    through: "dogTemperament",
+    timestamps: false
 })
 
-module.exports = {Dog, Temperament}
+module.exports = { Dog, Temperament }

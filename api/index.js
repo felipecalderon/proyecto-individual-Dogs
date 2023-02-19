@@ -14,7 +14,7 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { PORT } = process.env || 3002
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ alter: true }).then(() => {
   server.listen(PORT, () => {
     console.log(`servidor funcionando en puerto ${PORT}`);
   });

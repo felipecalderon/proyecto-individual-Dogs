@@ -2,7 +2,7 @@ const { DataTypes, Sequelize } = require('sequelize');
 const {conn} = require('../db');
 
 const Temperament = conn.define('temperament', {
-  temperamentId: {
+  id: {
     type: DataTypes.UUID,
     defaultValue: Sequelize.UUIDV4,
     allowNull: false,
