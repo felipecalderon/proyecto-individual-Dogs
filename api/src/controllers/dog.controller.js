@@ -2,6 +2,7 @@ const { Dog, Temperament } = require('../models/relations')
 const {fn, where, col} = require("sequelize")
 
 const findDogs = async ({name}) => {
+    try {
     const resp = await fetch(process.env.URI_API)
     const data = await resp.json()
 
@@ -23,7 +24,6 @@ const findDogs = async ({name}) => {
             alturamin, alturamax, pesomin, pesomax, vidamin, vidamax, temperaments
         }
     })
-    try {
         //SI NO VIENE UN NAME EN REQ QUERY ENTREGO TODOS LOS DOGS
     if(!name) {
         const doge = await Dog.findAll({
