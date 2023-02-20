@@ -19,7 +19,7 @@ import {
  
  const rootReducer = (state = initialState, action) => {
    const liveFilter = (breed) => {
-      return breed.name.toUpperCase().includes(action.payload) 
+      return breed.nombre.toUpperCase().includes(action.payload) 
       || breed.id === Number(action.payload) 
    }
 
@@ -43,8 +43,8 @@ import {
       if(action.payload === "AZ") return {
          ...state,
          filteredDogs: state.dogs.sort((breed0, breed1) => {
-         let nombre0 = breed0.name.toUpperCase();
-         let nombre1 = breed1.name.toUpperCase();
+         let nombre0 = breed0.nombre.toUpperCase();
+         let nombre1 = breed1.nombre.toUpperCase();
          return (nombre0 < nombre1) 
             ? -1 
             : (nombre0 > nombre1) 
@@ -54,8 +54,8 @@ import {
       if(action.payload === "ZA") return {
          ...state,
          filteredDogs: state.dogs.sort((breed0, breed1) => {
-            let nombre0 = breed0.name.toUpperCase();
-            let nombre1 = breed1.name.toUpperCase();
+            let nombre0 = breed0.nombre.toUpperCase();
+            let nombre1 = breed1.nombre.toUpperCase();
             return (nombre0 > nombre1) 
                ? -1 
                : (nombre0 < nombre1) 

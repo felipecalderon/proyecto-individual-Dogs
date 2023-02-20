@@ -8,14 +8,17 @@ export const BREED_DOG_FILTER = 'BREED_DOG_FILTER';
 export const getAllDogs = () => {
     return async (dispatch) => {
         try {
-            // let res = await fetch('http://localhost:3210/demodata')
-            let res = await fetch('https://api.thedogapi.com/v1/breeds')
+            let res = await fetch('http://localhost:3001/dogs/')
             let data = await res.json()
-            let dataAPI = data.map(item => {
-                const arrTemperament = item.temperament?.split(" ").join("").split(',')
-                return {...item, fuenteData: "apiExterna", temperament: arrTemperament}
+            const dataSanitized = data.map(breed => {
+                if(typeof breed.temperaments === 'string'){
+                    const arrTemp = breed.temperaments?.split(',')
+                    const tempsLimpio = arrTemp.map(temp => temp.trim())
+                    return {...breed, temperaments: tempsLimpio}
+                }
+            return breed
             })
-            return dispatch({type: GET_ALL_DOGS, payload: dataAPI});
+            return dispatch({type: GET_ALL_DOGS, payload: dataSanitized});
         } catch (error) {
             console.log(error);
         }
@@ -26,9 +29,9 @@ export const getDogDetail = (id) => {
     return {type: GET_DOG_DETAIL, payload: id}
 };
 
-let id = 6;
-export const createDog = (bands) => {
-    return {type: CREATE_DOG, payload: {...bands, id: id++}}
+
+export const createDog = (dataDog) => {
+    return {type: CREATE_DOG, payload: {}}
 };
 
 export const deleteDog = (id) => {

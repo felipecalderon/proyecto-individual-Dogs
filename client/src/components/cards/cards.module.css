@@ -5,3 +5,34 @@
     justify-content: center;
     gap: 1em;
 }
+
+.nextprev{
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.nextprev button{
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-top: .8em;
+    padding-bottom: .8em;
+    border-radius: 10px;
+    border: 4px solid #b96a55;
+    transition: all 300ms;
+}
+
+.nextprev button:hover{
+    color: white;
+    background-color: #e79b86;
+}
+
+.contador{
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    margin-bottom: 3em;
+    color: aliceblue;
+}
