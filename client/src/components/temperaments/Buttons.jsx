@@ -1,7 +1,7 @@
 import styles from './buttons.module.css'
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { getTemperaments, filterTemperaments } from "../../redux/actions"
+import { getTemperaments, filterDogTemperaments } from "../../redux/actions"
 import { useState } from 'react'
 
 const Buttons = () => {
@@ -9,16 +9,17 @@ const Buttons = () => {
     const { temperaments } = useSelector(state => state)
     const [page, setPage] = useState(10)
     const handleTemp = (e) => {
-        dispatch(filterTemperaments(e.target.name))
+        dispatch(filterDogTemperaments(e.target.name))
     }
 
     const verMas = () => {
         setPage(page + 15)
     }
-
+    
     useEffect(() => {
         dispatch(getTemperaments())
     }, [dispatch])
+
 
     return (
         <div className={styles.container}>

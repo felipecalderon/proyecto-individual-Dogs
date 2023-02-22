@@ -7,6 +7,8 @@ export const BREED_DOG_FILTER = 'BREED_DOG_FILTER';
 export const BREED_DOG_FILTER_ORIGIN = 'BREED_DOG_FILTER_ORIGIN'
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS'
 export const BREED_DOG_FILTER_TEMPERAMENT = 'BREED_DOG_FILTER_TEMPERAMENT'
+export const FILTER_TEMPERAMENT = 'FILTER_TEMPERAMENT'
+
 export const getAllDogs = () => {
     return async (dispatch) => {
         try {
@@ -39,7 +41,7 @@ export const getDogDetail = (id) => {
     }
 };
 
-export const getTemperaments = (name) => {
+export const getTemperaments = () => {
     return async (dispatch) => {
         try {
             let res = await fetch(`http://192.168.1.119:3001/temperaments/`)
@@ -72,6 +74,10 @@ export const filterOrigin = (origin) => {
     return {type: BREED_DOG_FILTER_ORIGIN, payload: origin}
 };
 
-export const filterTemperaments = (name) => {
+export const filterDogTemperaments = (name) => {
     return {type: BREED_DOG_FILTER_TEMPERAMENT, payload: name}
+}
+
+export const filterTemperaments = (name) => {
+    return {type: FILTER_TEMPERAMENT, payload: name}
 }

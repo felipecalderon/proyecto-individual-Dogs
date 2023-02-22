@@ -1,19 +1,28 @@
 import { useForm } from "./useForms";
 import { validate } from "./validation"
-import styles from './createbreed.module.css'
+import styles from './form.module.css'
+import { useDispatch, useSelector } from "react-redux";
+import { filterTemperaments, getTemperaments } from "../../redux/actions";
+import { useEffect } from "react";
 
 const Form = () => {
+    const { filteredTemps } = useSelector(state => state)
+    const dispatch = useDispatch()
     const login = () => {
       return console.log('No errors, submit callback called!');
     }
-
+    const filterTemps = () => {
+        dispatch(filterTemperaments(values.temperamentos))
+    }
     const {
         values,
         errors,
         handleChange,
         handleSubmit,
       } = useForm(login, validate);
-
+    useEffect(() => {
+        dispatch(getTemperaments())
+    }, [dispatch])
     return (
         <form onSubmit={handleSubmit} noValidate>
 
@@ -70,6 +79,22 @@ const Form = () => {
             )}
           </div>
           
+          <div className={styles.fieldset}>
+            <label>Agrega temperamentos</label>
+            <input autoComplete="off" type="text" name="temperamentos" onKeyUp={filterTemps} onChange={handleChange} value={values.temperamentos || ''} required />
+            <div className={styles.control}>
+              {errors.temperamentos && (
+                <p>{errors.temperamentos}</p>
+              )}
+            </div>
+            <div className={styles.temperamentos}>
+            {
+            filteredTemps?.map(temp => <li key={temp.name} name={temp.name} className={styles.btn}>{temp.name}</li>)
+            }
+            </div>
+
+          </div>
+
           <button type="submit" className={styles.button}>Agregar Raza</button>
         </form>   
     )

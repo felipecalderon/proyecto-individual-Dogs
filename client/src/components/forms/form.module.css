@@ -5,6 +5,15 @@ form{
 p{
   color: white;
 }
+.temperamentos{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.temperamentos li{
+  list-style: none;
+}
 
 .fieldset {
     margin-top: 2em;
@@ -25,7 +34,16 @@ z-index: 3;
   font-size: 1rem;
   font-weight: 700;
 }
-
+form button{
+  border: 1px solid transparent;
+  color: white;
+  background-color: #b96a55;
+  border-radius: .3em;
+  box-shadow: none;
+  font-size: 1em;
+  padding: .5em 5em;
+  cursor: pointer;
+}
 .ranges{
   margin-top: .5em;
   margin-bottom: 1.5em;
@@ -67,7 +85,7 @@ z-index: 3;
   position: relative;
 }
 
-.fieldset input[type="text"], .fieldset input[type="url"], form button{
+.fieldset input[type="text"], .fieldset input[type="url"]{
   border: 1px solid transparent;
   background-color: rgb(230, 230, 230);
   border-radius: .3em;

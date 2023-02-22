@@ -10,14 +10,16 @@ import {
    BREED_DOG_FILTER_ORIGIN,
    BREED_DOG_FILTER_TEMPERAMENT,
    GET_TEMPERAMENTS,
+   FILTER_TEMPERAMENT
  } from '../actions';
  
  const initialState = {
     dogs: [],
-    filteredDogs: [],
     dogDetail: {},
+    filteredDogs: [],
+    dogsTemperament: [],
     temperaments: [],
-    dogsTemperament: []
+    filteredTemps: [],
  };
  
  const rootReducer = (state = initialState, action) => {
@@ -30,19 +32,37 @@ import {
       return breed.origen.includes(action.payload)
    }
 
-   const temperamentFilter = (dog) => {
+   const dogTemperamentFilter = (dog) => {
       return dog.temperaments?.includes(action.payload)
       || dog.temperaments?.some(temp => temp.name === action.payload)
    }
 
+   const temperamentFilter = (temp) => {
+      return temp.name.toLowerCase().includes(action.payload.toLowerCase())
+   }
+
    switch (action.type) {
+   case FILTER_TEMPERAMENT: return {
+      ...state,
+      filteredTemps: state.temperaments.filter(temperamentFilter)
+   }
+
    case BREED_DOG_FILTER_TEMPERAMENT: return {
       ...state,
-      filteredDogs: state.dogs.filter(temperamentFilter)
+      dogsTemperament: state.dogs.filter(dogTemperamentFilter)
    }
+
    case GET_TEMPERAMENTS: return {
       ...state,
-      temperaments: action.payload
+      temperaments: action.payload.sort((t0, t1) => {
+         let temp0 = t0.name.toUpperCase();
+         let temp1 = t1.name.toUpperCase();
+         return (temp0 < temp1) 
+            ? -1 
+            : (temp0 > temp1) 
+            ? 1 
+            : 0;
+      })
       }
 
    case GET_ALL_DOGS: return {
