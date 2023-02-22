@@ -13,26 +13,38 @@ const DogDetail = () => {
     }, [])
 
     return(
+        <div>
+        <h2>Raza: {dogDetail.nombre}</h2>
         <div className={styles.container}>
-            {
-            !dogDetail 
-            ? <p>No se encontró Raza</p>
-            : <div className={styles.imageLeft}>
-                <img src={dogDetail.image?.url} alt={dogDetail.name} width="400"/>
+            <div className={styles.imageLeft}>
+                <img src={dogDetail.imagen} alt={dogDetail.nombre} width="400"/>
                 <div className={styles.detail}>
-                    <p>Nombre de raza: {dogDetail.name}</p>
-                    <p>Detalle: {dogDetail.bred_for}</p>
-                    <p>Caracteristicas: </p>
-                        {
-                            dogDetail.temperament?.map(temp => {
-                                return <li key={temp}>{temp}</li>
-                            })
-                        }
+                    <h3>Caracteristicas: </h3>
+
+                    {   dogDetail.temperaments?.map(temp => {
+                        if(temp.name) return <li>{temp.name}</li>
+                        return <li>{temp}</li> })}
+                    {
+                        (dogDetail.pesomin && dogDetail.pesomax)
+                        ? <span>Peso: entre {dogDetail.pesomin} y {dogDetail.pesomax}kg</span> 
+                        : (dogDetail.pesomin || dogDetail.pesomax)
+                            ? <span>Peso: hasta {dogDetail.pesomin}kg</span> 
+                            : <span>Sin datos de peso</span>
+                    }
+
+                    {(dogDetail.vidamin && dogDetail.vidamax)
+                        ? <span><i>Vive alrededor de {dogDetail.vidamin} y {dogDetail.vidamax} años.</i></span> 
+                        : ''}
+
+                    {(dogDetail.alturamin && dogDetail.alturamax)
+                        ? <span><i>Mide desde {dogDetail.alturamin} a {dogDetail.alturamax}cm.</i></span> 
+                        : ''
+                    }
 
                 </div>
             </div>
-            }
         </div>
+    </div>
     )
 }
 

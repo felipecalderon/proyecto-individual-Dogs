@@ -1,8 +1,8 @@
-const { useForm } = require("./useForms");
-const { validate } = require("./validation")
+import { useForm } from "./useForms";
+import { validate } from "./validation"
+import styles from './createbreed.module.css'
 
 const Form = () => {
-    
     const login = () => {
       return console.log('No errors, submit callback called!');
     }
@@ -13,29 +13,64 @@ const Form = () => {
         handleChange,
         handleSubmit,
       } = useForm(login, validate);
-    
 
     return (
         <form onSubmit={handleSubmit} noValidate>
-          <div className="field">
-            <label className="label">Email Address</label>
-            <div className="control">
-              <input autoComplete="off" className={`input ${errors.email && 'is-danger'}`} type="email" name="email" onChange={handleChange} value={values.email || ''} required />
-              {errors.email && (
-                <p className="help is-danger">{errors.email}</p>
+
+          <div className={styles.fieldset}>
+            <label>Nombre de la raza</label>
+            <input autoComplete="off" type="text" name="nombre" onChange={handleChange} value={values.nombre || ''} required />
+            <div className={styles.control}>
+              {errors.nombre && (
+                <p>{errors.nombre}</p>
+              )}
+              </div>
+          </div>
+
+          <div className={styles.fieldset}>
+            <label>Link de la imagen</label>
+              <input type="url" name="imagen" onChange={handleChange} value={values.imagen || ''} required />
+            <div className={styles.control}>
+            {errors.imagen && (
+              <p>{errors.imagen}</p>
               )}
             </div>
           </div>
-          <div className="field">
-            <label className="label">Password</label>
-            <div className="control">
-              <input className={`input ${errors.password && 'is-danger'}`} type="password" name="password" onChange={handleChange} value={values.password || ''} required />
+
+          <div className={styles.fieldset}>
+            <label>Peso promedio de raza {values.nombre}</label>
+            <div className={styles.ranges}>
+              <input type="range" className={styles.left} min={5} max={values.pesomax} step={1} name="pesomin" onChange={handleChange} value={values.pesomin} required />
+              <input type="range" className={styles.right} min={values.pesomin} max={80} step={1}  name="pesomax" onChange={handleChange} value={values.pesomax} required />
             </div>
-            {errors.password && (
-              <p className="help is-danger">{errors.password}</p>
+            {values.pesomax && (
+              <p>Entre {values.pesomin}kg y {values.pesomax}kg</p>
             )}
           </div>
-          <button type="submit" className="button is-block is-info is-fullwidth">Login</button>
+
+          <div className={styles.fieldset}>
+            <label>Altura promedio</label>
+            <div className={styles.ranges}>
+              <input type="range" className={styles.left} min={15} max={values.alturamax} step={1} name="alturamin" onChange={handleChange} value={values.alturamin} required />
+              <input type="range" className={styles.right} min={values.alturamin} max={100} step={1}  name="alturamax" onChange={handleChange} value={values.alturamax} required />
+            </div>
+            {values.alturamax && (
+              <p>Desde {values.alturamin}cm a {values.alturamax}cm</p>
+            )}
+          </div>
+
+          <div className={styles.fieldset}>
+            <label>Años de vida promedio</label>
+            <div className={styles.ranges}>
+              <input type="range" className={styles.left} min={2} max={values.vidamax} step={1} name="vidamin" onChange={handleChange} value={values.vidamin} required />
+              <input type="range" className={styles.right} min={values.vidamin} max={35} step={1}  name="vidamax" onChange={handleChange} value={values.vidamax} required />
+            </div>
+            {values.vidamax && (
+              <p>Vive entre {values.vidamin} y {values.vidamax} años</p>
+            )}
+          </div>
+          
+          <button type="submit" className={styles.button}>Agregar Raza</button>
         </form>   
     )
 }

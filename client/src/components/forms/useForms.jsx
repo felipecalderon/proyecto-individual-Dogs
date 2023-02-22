@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 
 const useForm = (callback, validate) => {
 
-    const [values, setValues] = useState({});
+    const [values, setValues] = useState({
+      pesomin: 5,
+      pesomax: 80,
+      alturamin: 15,
+      alturamax: 100,
+      vidamin: 2,
+      vidamax: 35
+    });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
   

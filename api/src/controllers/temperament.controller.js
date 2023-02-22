@@ -13,6 +13,8 @@ const newTemp = async ({name}) => {
 
 const allTemps = async ({temperamento}) => {
     try {
+        const resultadoApi = await getApiData()
+        if(!resultadoApi) throw 'No pudimos obtener datos de la API externa'
         if(temperamento){
             const temps = await Temperament.findAll({
                 include: {
@@ -63,8 +65,10 @@ const getApiData = async () => {
 
         if(!oneTemp){
             await Temperament.bulkCreate(bulkTemps)
-            return `Data importada desde ${process.env.URI_API} exitosamente. 👌`
+            return true
+            // return `Data importada desde ${process.env.URI_API} exitosamente. 👌`
         }
+        return true
         return 'La data ya se encuentra en la base de datos, revisar /temperaments'
     } catch (error) {
         throw `Ocurrió un problema al extraer la data desde api externa: ${process.env.URI_API}`

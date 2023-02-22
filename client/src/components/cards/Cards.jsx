@@ -25,7 +25,7 @@ const Cards = () => {
             <button onClick={paginaSgte}>Siguiente {'>'}</button>
         </div>
         <div className={styles.contador}>
-            Pagina {(pageDog + 8)/8} de {Math.floor(Math.round((filteredDogs.length - 1)/8))}
+            Pagina {(pageDog + 8)/8} de { Math.ceil((filteredDogs.length)/8)}
         </div>
         </>
         )    

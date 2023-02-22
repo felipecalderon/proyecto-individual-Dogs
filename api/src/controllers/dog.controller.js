@@ -1,5 +1,5 @@
 const { Dog, Temperament } = require('../models/relations')
-const {fn, where, col} = require("sequelize")
+const {fn, where, col, Op} = require("sequelize")
 
 const findDogs = async ({name}) => {
     try {
@@ -36,7 +36,10 @@ const findDogs = async ({name}) => {
     const minusc = name.toLowerCase()
     const doge = await Dog.findAll({
         where: {
-            nombre: where(fn("LOWER", col('nombre')), "LIKE", `%${minusc}%`)
+            // nombre: where(fn("LOWER", col('nombre')), "LIKE", `%${minusc}%`)
+            nombre: {
+                [Op.iLike]: `%${minusc}%`
+            }
         },
         include: { 
             model: Temperament

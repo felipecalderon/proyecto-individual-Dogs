@@ -1,57 +1,77 @@
+h2{
+	text-align: center;
+	color: bisque;
+	margin-top: 1em;
+	margin-bottom: 2em;
+}
+
 .detail{
     display: flex;
     color: white;
     flex-direction: column;
     gap: .8em;
-	margin-top: 1em;
+	transition: all 300ms;
+
+}
+
+.detail:hover{
+	transform: scale(1.2);
+	margin-top: 2em;
+	background-color: #2e2e2eaf;
+	padding: 3em;
+	border-radius: 1em;
 }
 
 .container{
+	margin-top: 2em;
 	display: flex;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.img{
-	max-width: 100%;
+.imageLeft img{
+	border-radius: 1em;
+	transition: all 300ms;
+}
+
+.imageLeft img:hover{
+	transform: scale(1.2);
+	margin-bottom: 2em;
 }
 
 .imageLeft, .imageRight
 {
-	max-width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 2em;
 
 }
 
-@media (min-width: 20em)
-{
-	.imageLeft, .imageRight
-	{
+@media (max-width: 400px){
+
+	.imageLeft, .imageRight{
 		display: flex;
+		flex-direction: column-reverse;
 		align-items: center;
+		justify-content: center;
+		gap: 2em;
+	}
+	.detail{
+		transform: scale(1.2);
+		margin-left: 0px;
+		background-color: #2e2e2eaf;
+		padding: 3em;
+		width: 70%;
+		text-align: center;
+	}
+	.imageLeft img{
+		transform: scale(.8);
 	}
 
-	.imageLeft img
-	{
-		margin-right: 1em;
-		float: left; /* fallback */
-	}
 
-	.imageRight img
-	{
-		order: 1;
-		margin-left: 1em;
-		float: right; /* fallback */
-	}
-	
-	/* clearfix for fallback */
-	.imageLeft::after,
-	.imageRight::after
-	{
-		content: "";
-  	display: block;
-		clear: both;
-	}
 }
 
 @media (min-width: 30em)

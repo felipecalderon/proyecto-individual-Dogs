@@ -37,11 +37,16 @@
     fill: currentColor;
   }
   
-  .cardDetail {
+  .cardDetail{
     margin: 0;
     margin-top: 20px;
     font-weight: 600;
     font-size: 18px;
+  }
+  
+  .cardClient a{
+    color: white;
+    text-decoration: none;
   }
   
   .cardDetail span {

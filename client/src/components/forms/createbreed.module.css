@@ -1,96 +1,92 @@
+form{
+  text-align: center;
+}
+
+p{
+  color: white;
+}
+
 .fieldset {
-    margin: 0;
-    padding: 0;
-    border: 0;
+    margin-top: 2em;
+    margin-bottom: 1em;
   }
+
+.left{
+  z-index: 2;
+}
+ 
+.right{
+z-index: 3;
+}
+
+.fieldset label{
+  color: white;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ranges{
+  margin-top: .5em;
+  margin-bottom: 1.5em;
+  position: relative;
+  left: -160px;
+}
+
+.ranges input{
+  pointer-events: none;
+  position: absolute;
+  height: .3em;
+  outline: none;
+  width: 25em;
   
-.input {
-    display: block;
-    width: 100%;
-    height: 3em;
-    padding: 16px 8px;
-    border: 0;
-    border-radius: 0;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1;
-    background: rgba(255, 255, 255, 0.97);
-    color: #212121;
-    outline: 0;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-    transition: all 0.2s ease-in-out;
-  }
+}
+
+.ranges input::-webkit-slider-thumb {
+  background-color: #f1f5f7;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  pointer-events: all;
+  position: relative;
+}
+
+/* For Firefox browsers */
+.ranges input::-moz-range-thumb {
+  background-color: #f1f5f7;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  pointer-events: all;
+  position: relative;
+}
+
+.fieldset input[type="text"], .fieldset input[type="url"], form button{
+  border: 1px solid transparent;
+  background-color: rgb(230, 230, 230);
+  border-radius: .3em;
+  box-shadow: none;
+  font-size: 1em;
+  padding: .5em 5em;
+}
+
+.fieldset input:focus{
+  background-color: white;
+}
   
-  .formLabel fieldset {
-    position: relative;
-  }
-  .formLabel fieldset:first-child input {
-    border-radius: 4px 4px 0 0;
-  }
-  .formLabel fieldset:last-child input {
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
-  }
-  .formLabel fieldset + fieldset {
-    border-top: 1px solid #ddd;
-  }
-  .formLabel .label {
-    position: absolute;
-    top: 15px;
-    left: 8px;
-    color: #909090;
-    transform: translate3d(0, 0, 0);
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .formCss input[data-empty=false], .formCss input:valid, .formCss input:focus {
-    padding: 22px 8px 10px;
-  }
-  .formCss input:focus {
-    outline: 0;
-    background: white;
-  }
-  .formCss input[data-empty=false] + label, .formCss input:valid + label, .formCss input:focus + label {
-    color: #b96a55;
-    font-weight: 700;
-    font-size: 12px;
-    transform: translate3d(0, -10px, 0);
-  }
-  
-  .form-js-label input[data-empty=false], .form-js-label input:focus {
-    padding: 22px 8px 10px;
-  }
-  .form-js-label input:focus {
-    outline: 0;
-    background: white;
-  }
-  .form-js-label input[data-empty=false] + label, .form-js-label input:focus + label {
-    color: #d68756;
-    font-weight: 700;
-    font-size: 12px;
-    transform: translate3d(0, -10px, 0);
-  }
-  
-  .section {
-    width: 80%;
-    min-width: 320px;
-    margin: 100px auto;
-    text-align: center;
-    text-shadow: -1px -1px rgba(0, 0, 0, 0.1);
-    color: #fff;
-  }
-  .section h2 {
-    margin: 0 0 0.5em;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 1.25;
-  }
-  .section p {
-    margin: 0 0 1em;
-  }
-  .section form {
-    max-width: 420px;
-    margin: 0 auto 20px;
-  }
+.control p{
+  display: inline-flex;
+  border-radius: .3em;
+  align-items: end;
+  font-size: 0.75em;
+  margin-top: 0.25em;
+  color: white;
+  background-color: #b96a55;
+  padding: .3em .6em;
+}
