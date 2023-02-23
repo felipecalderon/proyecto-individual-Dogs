@@ -2,7 +2,7 @@ import Nav from './components/navbar/NavBar'
 import Home from "./components/pages/home/Home";
 import Dogs from "./components/pages/dogs/Dogs";
 import DogDetail from './components/pages/dog/DogDetail';
-import Form from './components/forms/Form'
+import AddDogBreed from './components/forms/AddDogBreed'
 import { Routes, Route } from "react-router-dom";
 import { getAllDogs } from './redux/actions';
 import { useDispatch } from 'react-redux';
@@ -21,7 +21,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/dogs" element={<Dogs />} />
       <Route path="/dog/:id" element={<DogDetail/>} />
-      <Route path="/add" element={<Form />} />
+      <Route path="/add" element={<AddDogBreed />} />
     </Routes>
       
   </>

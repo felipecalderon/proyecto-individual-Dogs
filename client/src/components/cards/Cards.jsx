@@ -1,9 +1,11 @@
 import DogCard from "./DogCard"
 import styles from './cards.module.css'
-import { useSelector } from "react-redux"
-import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+import { filterBreeds } from "../../redux/actions"
 const Cards = () => {
     const {filteredDogs} = useSelector((state) => state)
+    const dispatch = useDispatch()
     const [pageDog, setPageDog] = useState(0)
     const pocosDogs = filteredDogs.slice(pageDog, pageDog + 8)
     const paginaSgte = () => {
@@ -13,6 +15,9 @@ const Cards = () => {
     const paginaAnte = () => {
         if(pageDog > 0) setPageDog(pageDog - 8)
     }
+    useEffect(() => {
+        dispatch(filterBreeds(""))
+    }, [])
     return (
         <>
         <div className={styles.cardsFlex}>

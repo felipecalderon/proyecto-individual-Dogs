@@ -8,6 +8,7 @@ export const BREED_DOG_FILTER_ORIGIN = 'BREED_DOG_FILTER_ORIGIN'
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS'
 export const BREED_DOG_FILTER_TEMPERAMENT = 'BREED_DOG_FILTER_TEMPERAMENT'
 export const FILTER_TEMPERAMENT = 'FILTER_TEMPERAMENT'
+export const FILTER_OPTIONS_TEMPS = 'FILTER_OPTIONS_TEMPS'
 
 export const getAllDogs = () => {
     return async (dispatch) => {
@@ -80,4 +81,8 @@ export const filterDogTemperaments = (name) => {
 
 export const filterTemperaments = (name) => {
     return {type: FILTER_TEMPERAMENT, payload: name}
+}
+
+export const antiFilterTemp = (name) => {
+    return {type: FILTER_OPTIONS_TEMPS, payload: name}
 }

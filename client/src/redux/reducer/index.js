@@ -10,6 +10,7 @@ import {
    BREED_DOG_FILTER_ORIGIN,
    BREED_DOG_FILTER_TEMPERAMENT,
    GET_TEMPERAMENTS,
+   FILTER_OPTIONS_TEMPS,
    FILTER_TEMPERAMENT
  } from '../actions';
  
@@ -20,6 +21,14 @@ import {
     dogsTemperament: [],
     temperaments: [],
     filteredTemps: [],
+    rulesValidation: {
+      pesomin: 5,
+      pesomax: 80,
+      alturamin: 15,
+      alturamax: 100,
+      vidamin: 2,
+      vidamax: 35
+    }
  };
  
  const rootReducer = (state = initialState, action) => {
@@ -41,12 +50,21 @@ import {
       return temp.name.toLowerCase().includes(action.payload.toLowerCase())
    }
 
+   const antiFilterTemp = (temp) => {
+      return temp.name.toLowerCase() !== action.payload.toLowerCase()
+   }
+
    switch (action.type) {
    case FILTER_TEMPERAMENT: return {
       ...state,
       filteredTemps: state.temperaments.filter(temperamentFilter)
    }
 
+   case FILTER_OPTIONS_TEMPS: return {
+      ...state,
+      filteredTemps: state.temperaments.filter(antiFilterTemp)
+   }
+   
    case BREED_DOG_FILTER_TEMPERAMENT: return {
       ...state,
       dogsTemperament: state.dogs.filter(dogTemperamentFilter)

@@ -8,7 +8,8 @@ const useForm = (callback, validate) => {
       alturamin: 15,
       alturamax: 100,
       vidamin: 2,
-      vidamax: 35
+      vidamax: 35,
+      temperamentos: []
     });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,14 +21,19 @@ const useForm = (callback, validate) => {
     }, [callback, errors, isSubmitting]);
   
     const handleSubmit = (event) => {
-      if (event) event.preventDefault();
+      event.preventDefault();
       setErrors(validate(values));
       setIsSubmitting(true);
     };
   
     const handleChange = (event) => {
       event.preventDefault();
-      setValues(values => ({ ...values, [event.target.name]: event.target.value }));
+      console.log(values)
+      setValues(values => {
+        return ({ ...values, 
+          [event.target.name]: event.target.value 
+        })
+      });
     };
   
     return {
@@ -35,6 +41,7 @@ const useForm = (callback, validate) => {
       handleSubmit,
       values,
       errors,
+      setValues
     }
   };
   

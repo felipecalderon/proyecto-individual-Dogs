@@ -8,6 +8,7 @@ p{
 .temperamentos{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1em;
 }
 
@@ -28,12 +29,35 @@ p{
 z-index: 3;
 }
 
+.fieldset select{
+  width: 25em;
+  height: 15em;
+  text-align: center;
+  border-radius: 0 0 1em 1em;
+  scroll-behavior: smooth;
+}
+
 .fieldset label{
   color: white;
   display: block;
   font-size: 1rem;
   font-weight: 700;
 }
+.tempsDisplay{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 5em;
+  gap: .3em
+}
+.tempsDisplay button{
+  background-color: burlywood;
+  padding: .2em .2em;
+  gap: 1em;
+  cursor: crosshair;
+  color: black
+}
+
 form button{
   border: 1px solid transparent;
   color: white;
@@ -42,7 +66,8 @@ form button{
   box-shadow: none;
   font-size: 1em;
   padding: .5em 5em;
-  cursor: pointer;
+  cursor: copy;
+  margin-bottom: 2em;
 }
 .ranges{
   margin-top: .5em;
