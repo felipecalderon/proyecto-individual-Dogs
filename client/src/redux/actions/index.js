@@ -54,8 +54,25 @@ export const getTemperaments = () => {
     }
 };
 
-export const createDog = (dataDog) => {
-    return {type: CREATE_DOG, payload: {}}
+export const createDog = (dataForm) => {
+    console.log(dataForm)
+    return async (dispatch) => {
+        try {
+            let res = await fetch('http://192.168.1.119:3001/dogs/', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataForm)
+            })
+            if(!res.ok) return console.log('error')
+            let data = await res.json()
+            console.log(data)
+            return dispatch({type: CREATE_DOG});
+        } catch (error) {
+            console.log(error);
+        }
+    }
 };
 
 export const deleteDog = (id) => {

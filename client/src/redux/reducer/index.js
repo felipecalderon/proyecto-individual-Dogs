@@ -38,7 +38,7 @@ import {
    }
    const originFilter = (breed) => {
       if(action.payload === 'all') return true
-      return breed.origen.includes(action.payload)
+      return breed.origen.includes(action.payload) 
    }
 
    const dogTemperamentFilter = (dog) => {
@@ -55,6 +55,9 @@ import {
    }
 
    switch (action.type) {
+   case CREATE_DOG: return {
+      ...state
+   }
    case FILTER_TEMPERAMENT: return {
       ...state,
       filteredTemps: state.temperaments.filter(temperamentFilter)
@@ -67,7 +70,7 @@ import {
    
    case BREED_DOG_FILTER_TEMPERAMENT: return {
       ...state,
-      dogsTemperament: state.dogs.filter(dogTemperamentFilter)
+      filteredDogs: state.dogs.filter(dogTemperamentFilter)
    }
 
    case GET_TEMPERAMENTS: return {

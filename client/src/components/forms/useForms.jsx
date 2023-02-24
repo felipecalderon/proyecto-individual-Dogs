@@ -9,7 +9,7 @@ const useForm = (callback, validate) => {
       alturamax: 100,
       vidamin: 2,
       vidamax: 35,
-      temperamentos: []
+      arrTemperamentosId: []
     });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);

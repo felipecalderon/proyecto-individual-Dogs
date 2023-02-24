@@ -2,25 +2,25 @@ import { useForm } from "./useForms";
 import { validate } from "./validation"
 import styles from './form.module.css'
 import { useDispatch, useSelector } from "react-redux";
-import { filterTemperaments, getTemperaments, antiFilterTemp } from "../../redux/actions";
+import { filterTemperaments, getTemperaments, antiFilterTemp, createDog } from "../../redux/actions";
 import { useEffect, useState } from "react";
 
 const Form = () => {
-    const { filteredTemps, rulesValidation } = useSelector(state => state)
+    const { filteredTemps } = useSelector(state => state)
     const dispatch = useDispatch()
     const [tempsDisplay, setTempsDisplay] = useState([])
     const sumbited = () => {
-      setValues(rulesValidation)
-      return console.log('Formulario enviado!')
+      dispatch(createDog(values))
+      return console.log(values)
     }
 
-    const { values, setValues, errors, handleChange, handleSubmit } = useForm(sumbited, validate);
+    const { values, errors, handleChange, handleSubmit } = useForm(sumbited, validate);
     const filterTemps = () => {
         dispatch(filterTemperaments(values.buscar))
     }
 
     const handleOptions = (e) => {
-      values.temperamentos = [...values.temperamentos, e.target.id]
+      values.arrTemperamentosId = [...values.arrTemperamentosId, e.target.id]
       setTempsDisplay([...tempsDisplay, e.target.value])
       e.target.setAttribute('hidden', true)
     }
@@ -34,7 +34,7 @@ const Form = () => {
     useEffect(() => {
       dispatch(getTemperaments())
       dispatch(filterTemperaments(''))
-    }, [dispatch])
+    }, [])
 
     return (
         <form onSubmit={handleSubmit} noValidate>
@@ -124,8 +124,8 @@ const Form = () => {
             </div>
 
             <div className={styles.control}>
-              {errors.temperamentos && (
-                <p>{errors.temperamentos}</p>
+              {errors.arrTemperamentosId && (
+                <p>{errors.arrTemperamentosId}</p>
               )}
             </div>
           </div>
