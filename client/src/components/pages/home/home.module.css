@@ -46,11 +46,15 @@ h3{
     display: flex;
     text-align: center;
     width: 100vw;
+    cursor: url('https://cdn-icons-png.flaticon.com/512/556/556151.png'), auto;
 }
 
 .animated img{
-    cursor: crosshair;
     animation: perrito 12s linear infinite;
+}
+
+.animated img:hover{
+    -webkit-animation-play-state: paused
 }
 
 @keyframes perrito {

@@ -9,9 +9,9 @@ const Form = () => {
     const { filteredTemps } = useSelector(state => state)
     const dispatch = useDispatch()
     const [tempsDisplay, setTempsDisplay] = useState([])
-    const sumbited = () => {
-      dispatch(createDog(values))
-      return console.log(values)
+    const sumbited = async () => {
+      const dp = await dispatch(createDog(values))
+      if(dp.original.detail) return alert(dp.original.detail)
     }
 
     const { values, errors, handleChange, handleSubmit } = useForm(sumbited, validate);
@@ -38,7 +38,6 @@ const Form = () => {
 
     return (
         <form onSubmit={handleSubmit} noValidate>
-
           <div className={styles.fieldset}>
             <label>Nombre de la raza</label>
             <input autoComplete="off" type="text" name="nombre" onChange={handleChange} value={values.nombre || ''} required />

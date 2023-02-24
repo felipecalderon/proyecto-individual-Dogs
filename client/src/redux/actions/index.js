@@ -55,7 +55,6 @@ export const getTemperaments = () => {
 };
 
 export const createDog = (dataForm) => {
-    console.log(dataForm)
     return async (dispatch) => {
         try {
             let res = await fetch('http://192.168.1.119:3001/dogs/', {
@@ -65,10 +64,9 @@ export const createDog = (dataForm) => {
                 },
                 body: JSON.stringify(dataForm)
             })
-            if(!res.ok) return console.log('error')
-            let data = await res.json()
-            console.log(data)
-            return dispatch({type: CREATE_DOG});
+            if(res.ok) return dispatch({type: CREATE_DOG});
+            const err = await res.json()
+            return err
         } catch (error) {
             console.log(error);
         }
