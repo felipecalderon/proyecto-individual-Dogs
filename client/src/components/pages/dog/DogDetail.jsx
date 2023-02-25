@@ -13,13 +13,16 @@ const DogDetail = () => {
     }, [])
 
     return(
-        <div>
+        <div style={{
+            backgroundImage: 'linear-gradient(#00939c, #b96a55)',
+            paddingTop: '1em',
+        }}>
         <h2>Raza: {dogDetail.nombre}</h2>
         <div className={styles.container}>
             <div className={styles.imageLeft}>
                 <img src={dogDetail.imagen} alt={dogDetail.nombre} width="400"/>
                 <div className={styles.detail}>
-                    <h3>Caracteristicas: </h3>
+                    <h4>Caracteristicas: </h4>
 
                     {   dogDetail.temperaments?.map(temp => {
                         if(temp.name) return <li>{temp.name}</li>

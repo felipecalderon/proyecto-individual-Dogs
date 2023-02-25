@@ -18,6 +18,10 @@ const Cards = () => {
     useEffect(() => {
         dispatch(filterBreeds(""))
     }, [])
+
+    useEffect(() => {
+        setPageDog(0)
+    }, [filteredDogs])
     return (
         <>
         <div className={styles.cardsFlex}>

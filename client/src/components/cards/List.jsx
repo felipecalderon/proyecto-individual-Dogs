@@ -1,13 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import DogList from "./DogList"
 import styles from './list.module.css'
 const List = () => {
-    const {dogsTemperament} = useSelector(state => state)
+    const {dogsTemperament, filteredDogs} = useSelector(state => state)
     const [page, setPage] = useState(8)
     const moreDogs = () => {
         setPage(page + 8)
     }
+    useEffect(() => {
+        console.log(filteredDogs)
+        setPage(8)
+    }, [filteredDogs])
 
     return (
         <>

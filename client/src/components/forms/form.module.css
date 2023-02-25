@@ -54,14 +54,14 @@ z-index: 3;
   background-color: burlywood;
   padding: .2em .2em;
   gap: 1em;
-  cursor: crosshair;
+  cursor: pointer;
   color: black
 }
 
 form button{
   border: 1px solid transparent;
   color: white;
-  background-color: #b96a55;
+  background-color: #00939c;
   border-radius: .3em;
   box-shadow: none;
   font-size: 1em;
@@ -112,7 +112,7 @@ form button{
 
 .fieldset input[type="text"], .fieldset input[type="url"]{
   border: 1px solid transparent;
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(245, 245, 245);
   border-radius: .3em;
   box-shadow: none;
   font-size: 1em;

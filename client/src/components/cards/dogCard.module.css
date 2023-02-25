@@ -1,12 +1,12 @@
 .cardClient {
-    background: #b96a55;
+    background: #b96a559c;
     width: 19rem;
     padding-top: 25px;
     padding-bottom: 25px;
     padding-left: 30px;
     padding-right: 30px;
     border: 4px solid #e79b86;
-    box-shadow: 0 6px 10px #e79b86;
+    box-shadow: 0 6px 10px #29211f85;
     border-radius: 10px;
     text-align: center;
     color: #fff;
@@ -15,7 +15,7 @@
   }
 
   .cardClient:hover {
-    box-shadow: 0 6px 50px #e79b86;
+    box-shadow: 0 6px 50px #29211f36;
     transform: scale(1.1);
   }
   

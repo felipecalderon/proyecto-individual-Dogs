@@ -4,40 +4,25 @@ h2{
 	margin-top: 1em;
 	margin-bottom: 2em;
 }
-
+h4{
+	color: yellow;
+	font-size: 150%;
+}
 .detail{
     display: flex;
     color: white;
     flex-direction: column;
     gap: .8em;
 	transition: all 300ms;
-
-}
-
-.detail:hover{
-	transform: scale(1.2);
-	margin-top: 2em;
-	background-color: #2e2e2eaf;
-	padding: 3em;
-	border-radius: 1em;
 }
 
 .container{
-	margin-top: 2em;
-	display: flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
+	padding-bottom: 10em;
 }
 
 .imageLeft img{
 	border-radius: 1em;
 	transition: all 300ms;
-}
-
-.imageLeft img:hover{
-	transform: scale(1.2);
-	margin-bottom: 2em;
 }
 
 .imageLeft, .imageRight
@@ -46,7 +31,7 @@ h2{
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	gap: 2em;
+	gap: 5em;
 
 }
 
@@ -70,12 +55,22 @@ h2{
 	.imageLeft img{
 		transform: scale(.8);
 	}
-
-
 }
 
-@media (min-width: 30em)
-{
+@media (min-width: 30em){
+	.detail:hover{
+		transform: scale(1.1);
+		margin-top: 2em;
+		background-color: #2e2e2eaf;
+		padding: 1em 2em;
+		border-radius: 1em;
+		margin-top: -1em;
+	}
+	
+	.imageLeft img:hover{
+		transform: scale(1.2);
+	}
+
 	.imageLeft img, .imageRight img
 	{
 		flex-shrink: 0;

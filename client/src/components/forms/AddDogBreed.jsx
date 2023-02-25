@@ -37,7 +37,10 @@ const Form = () => {
     }, [])
 
     return (
-        <form onSubmit={handleSubmit} noValidate>
+        <form onSubmit={handleSubmit} noValidate style={{
+        backgroundImage: 'linear-gradient(#00939c, #b96a55)',
+        paddingTop: '1em',
+    }}>
           <div className={styles.fieldset}>
             <label>Nombre de la raza</label>
             <input autoComplete="off" type="text" name="nombre" onChange={handleChange} value={values.nombre || ''} required />
@@ -61,8 +64,8 @@ const Form = () => {
           <div className={styles.fieldset}>
             <label>Peso promedio de raza {values.nombre}</label>
             <div className={styles.ranges}>
-              <input type="range" className={styles.left} min={5} max={values.pesomax} step={1} name="pesomin" onChange={handleChange} value={values.pesomin} required />
-              <input type="range" className={styles.right} min={values.pesomin} max={80} step={1}  name="pesomax" onChange={handleChange} value={values.pesomax} required />
+              <input type="range" className={styles.left} min={5} max={(Number(values.pesomax) - 1)} step={1} name="pesomin" onChange={handleChange} value={values.pesomin} required />
+              <input type="range" className={styles.right} min={(Number(values.pesomin) + 1)} max={80} step={1}  name="pesomax" onChange={handleChange} value={values.pesomax} required />
             </div>
             {values.pesomax && (
               <p>Entre {values.pesomin}kg y {values.pesomax}kg</p>
@@ -77,8 +80,8 @@ const Form = () => {
           <div className={styles.fieldset}>
             <label>Altura promedio</label>
             <div className={styles.ranges}>
-              <input type="range" className={styles.left} min={15} max={values.alturamax} step={1} name="alturamin" onChange={handleChange} value={values.alturamin} required />
-              <input type="range" className={styles.right} min={values.alturamin} max={100} step={1}  name="alturamax" onChange={handleChange} value={values.alturamax} required />
+              <input type="range" className={styles.left} min={15} max={(Number(values.alturamax) - 1)} step={1} name="alturamin" onChange={handleChange} value={values.alturamin} required />
+              <input type="range" className={styles.right} min={(Number(values.alturamin) + 1)} max={100} step={1}  name="alturamax" onChange={handleChange} value={values.alturamax} required />
             </div>
             {values.alturamax && (
               <p>Desde {values.alturamin}cm a {values.alturamax}cm</p>
@@ -93,8 +96,8 @@ const Form = () => {
           <div className={styles.fieldset}>
             <label>Años de vida promedio</label>
             <div className={styles.ranges}>
-              <input type="range" className={styles.left} min={2} max={values.vidamax} step={1} name="vidamin" onChange={handleChange} value={values.vidamin} required />
-              <input type="range" className={styles.right} min={values.vidamin} max={35} step={1}  name="vidamax" onChange={handleChange} value={values.vidamax} required />
+              <input type="range" className={styles.left} min={2} max={(Number(values.vidamax) - 1)} step={1} name="vidamin" onChange={handleChange} value={values.vidamin} required />
+              <input type="range" className={styles.right} min={(Number(values.vidamin) + 1)} max={35} step={1}  name="vidamax" onChange={handleChange} value={values.vidamax} required />
             </div>
             {values.vidamax && (
               <p>Vive entre {values.vidamin} y {values.vidamax} años</p>
@@ -130,7 +133,7 @@ const Form = () => {
           </div>
 
           <button type="submit" className={styles.button}>Agregar Raza</button>
-        </form>   
+        </form> 
     )
 }
 
