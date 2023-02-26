@@ -15,7 +15,7 @@ const Home = () => {
                 <h1>PI Dogs</h1>
                 <h3>Soy Henry</h3>
                 <p>Aventúrate a conocer las diferentes razas de perros y sus características</p>
-                <p><i>Toca al perro old school para comenzar</i></p>
+                <p><i>Toca al perrito para comenzar</i></p>
             </div>
             <div className={styles.animated}>
                 <Link to='/dogs'>

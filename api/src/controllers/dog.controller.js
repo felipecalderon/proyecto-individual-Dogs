@@ -7,7 +7,7 @@ const findDogs = async ({name}) => {
     const data = await resp.json()
 
     const arrApi = data.map(dog => {
-        let vida = dog.life_span.split(' ')
+        let vida = dog.life_span?.split(' ')
         let alturamin = Number(dog.height.metric.split(" - ")[0]) 
         let alturamax = Number(dog.height.metric.split(" - ")[1]) 
         let pesomin = Number(dog.weight.metric.split(" - ")[0]) 
@@ -60,13 +60,13 @@ const findDogById = async (id) => {
         const data = await resp.json()
         if(!isNaN(Number(id))){
             const findApi = data.find(dog => dog.id === Number(id))
-            let vida = findApi.life_span?.split(' ')
-            let alturamin = Number(findApi.height.metric.split(" - ")[0]) 
-            let alturamax = Number(findApi.height.metric.split(" - ")[1]) 
-            let pesomin = Number(findApi.weight.metric.split(" - ")[0]) 
-            let pesomax = Number(findApi.weight.metric.split(" - ")[1]) 
+            let vida = findApi?.life_span?.split(' ')
+            let alturamin = Number(findApi?.height?.metric.split(" - ")[0]) 
+            let alturamax = Number(findApi?.height?.metric.split(" - ")[1]) 
+            let pesomin = Number(findApi?.weight?.metric.split(" - ")[0]) 
+            let pesomax = Number(findApi?.weight?.metric.split(" - ")[1]) 
             let vidamin = Number(vida[0])
-            let vidamax = Number(vida[2]) 
+            let vidamax = Number(vida[2])
             let temperaments = findApi.temperament?.split(',').map(t => t.trim())
             const formatted = {
                 id: findApi.id,
