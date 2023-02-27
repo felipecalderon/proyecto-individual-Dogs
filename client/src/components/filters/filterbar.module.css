@@ -21,6 +21,13 @@
     height: 2em;
 }
 
+.filternav input[type=number]{
+  width: 5em;
+  border-radius: .3em;
+  border: 1px solid #aaa;
+  height: 2em;
+}
+
 .filternav button{
     padding: .1em 1em .3em 1em;
     border-radius: .3em;

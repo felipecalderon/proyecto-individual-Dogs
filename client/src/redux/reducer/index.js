@@ -11,7 +11,8 @@ import {
    BREED_DOG_FILTER_TEMPERAMENT,
    GET_TEMPERAMENTS,
    FILTER_OPTIONS_TEMPS,
-   FILTER_TEMPERAMENT
+   FILTER_TEMPERAMENT,
+   FILTER_ALTURA
  } from '../actions';
  
  const initialState = {
@@ -54,10 +55,20 @@ import {
       return temp.name.toLowerCase() !== action.payload.toLowerCase()
    }
 
-   switch (action.type) {
-   case CREATE_DOG: return {
-      ...state
+   const heigthFilter = (dog) => {
+      const {min, max} = action.payload
+      return dog.alturamin >= min && dog.alturamax <= max
    }
+
+   switch (action.type) {
+      case FILTER_ALTURA: return {
+         ...state,
+         filteredDogs: state.dogs.filter(heigthFilter)
+      }
+      case CREATE_DOG: return {
+         ...state
+   }
+
    case FILTER_TEMPERAMENT: return {
       ...state,
       filteredTemps: state.temperaments.filter(temperamentFilter)
@@ -136,6 +147,7 @@ import {
       }
       return {...state}
    }
+
    default: return {
         ...state
      }

@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom'
 
 const DogCard = ({dog}) => {
     const temperamentos = dog.temperaments?.map(temp => {
-        if(typeof temp === 'string') return <li key={temp}>{temp}</li>
-        return <li key={temp.id}>{temp.name}</li>
+        if(typeof temp === 'string') return <button key={temp}>{temp}</button>
+        return <button key={temp.id}>{temp.name}</button>
     })
 
     return (

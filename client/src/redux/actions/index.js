@@ -9,6 +9,7 @@ export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS'
 export const BREED_DOG_FILTER_TEMPERAMENT = 'BREED_DOG_FILTER_TEMPERAMENT'
 export const FILTER_TEMPERAMENT = 'FILTER_TEMPERAMENT'
 export const FILTER_OPTIONS_TEMPS = 'FILTER_OPTIONS_TEMPS'
+export const FILTER_ALTURA = 'FILTER_ALTURA'
 
 export const getAllDogs = () => {
     return async (dispatch) => {
@@ -73,10 +74,6 @@ export const createDog = (dataForm) => {
     }
 };
 
-export const deleteDog = (id) => {
-    return {type: DELETE_DOG, payload: id}
-};
-
 export const orderBreeds = (order) => {
     return {type: BREED_DOG_ORDER, payload: order}
 };
@@ -98,6 +95,14 @@ export const filterTemperaments = (name) => {
     return {type: FILTER_TEMPERAMENT, payload: name}
 }
 
+export const filterHeight = (min, max) => {
+    return {type: FILTER_ALTURA, payload: {min, max}}
+}
+
 export const antiFilterTemp = (name) => {
     return {type: FILTER_OPTIONS_TEMPS, payload: name}
 }
+
+    // export const deleteDog = (id) => {
+    //     return {type: DELETE_DOG, payload: id}
+    // };
