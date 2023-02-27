@@ -3,12 +3,16 @@ import { validate } from "./validation"
 import styles from './form.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { filterTemperaments, getTemperaments, antiFilterTemp, createDog } from "../../redux/actions";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import DogCard from "../cards/DogCard";
 
 const Form = () => {
     const { filteredTemps } = useSelector(state => state)
     const dispatch = useDispatch()
+    const myRef = useRef(null)
     const [tempsDisplay, setTempsDisplay] = useState([])
+    const [showPreview, setShowPreview] = useState(false)
+
     const sumbited = async () => {
       const dp = await dispatch(createDog(values))
       if(dp.original.detail) return alert(dp.original.detail)
@@ -30,17 +34,38 @@ const Form = () => {
       setTempsDisplay(filtro)
       dispatch(antiFilterTemp(e.target.name))
     }
-
+    
+    let dogpreview = {
+      temperaments: tempsDisplay,
+      origen: 'database',
+      id: '#',
+      imagen: values.imagen,
+      nombre: values.nombre,
+      pesomin: values.pesomin,
+      pesomax: values.pesomax
+    }
+  
     useEffect(() => {
       dispatch(getTemperaments())
       dispatch(filterTemperaments(''))
     }, [])
 
+    const handlePreview = (e) => {
+      setTimeout(() => {
+        myRef.current.scrollIntoView()
+      }, 50)
+      setShowPreview(true)
+    }
+
     return (
-        <form onSubmit={handleSubmit} noValidate style={{
+      <div style={{
         backgroundImage: 'linear-gradient(#00939c, #b96a55)',
         paddingTop: '1em',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
     }}>
+        <form onSubmit={handleSubmit} noValidate>
           <div className={styles.fieldset}>
             <label>Nombre de la raza</label>
             <input autoComplete="off" type="text" name="nombre" onChange={handleChange} value={values.nombre || ''} required />
@@ -62,7 +87,7 @@ const Form = () => {
           </div>
 
           <div className={styles.fieldset}>
-            <label>Peso promedio de raza {values.nombre}</label>
+            <label>Peso promedio de raza</label>
             <div className={styles.ranges}>
               <input type="range" className={styles.left} min={5} max={(Number(values.pesomax) - 1)} step={1} name="pesomin" onChange={handleChange} value={values.pesomin} required />
               <input type="range" className={styles.right} min={(Number(values.pesomin) + 1)} max={80} step={1}  name="pesomax" onChange={handleChange} value={values.pesomax} required />
@@ -121,7 +146,7 @@ const Form = () => {
 
             <div className={styles.tempsDisplay}>
             {tempsDisplay?.map(temp => {
-              return <button name={temp} onClick={cleanOption}>{temp}</button>
+              return <button name={temp} key={temp} onClick={cleanOption}>{temp}</button>
             })}
             </div>
 
@@ -134,6 +159,14 @@ const Form = () => {
 
           <button type="submit" className={styles.button}>Agregar Raza</button>
         </form> 
+        <button ref={myRef} onClick={handlePreview} className={styles.button}>Vista previa</button><br></br>
+        { showPreview &&
+          <div className={styles.preview} >
+            <pre>Vista previa:</pre>
+            <DogCard dog={dogpreview} />
+          </div>
+        }
+      </div>
     )
 }
 

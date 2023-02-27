@@ -3,12 +3,12 @@ import {Link} from 'react-router-dom'
 
 const DogCard = ({dog}) => {
     const temperamentos = dog.temperaments?.map(temp => {
-        if(typeof temp === 'string') return <button key={temp}>{temp}</button>
-        return <button key={temp.id}>{temp.name}</button>
+        return <button key={temp.name || temp}>{temp.name || temp}</button>
     })
 
     return (
     <div className={styles.cardClient}>
+        <pre>Origen: {dog.origen}</pre>
         <div className={styles.userPicture}>
             <Link to={`/dog/${dog.id}`}>
             <img src={dog.imagen} alt={dog.nombre} width="150"/>
@@ -26,7 +26,7 @@ const DogCard = ({dog}) => {
 
         </p>
         <div className={styles.cardFooter}>
-            { temperamentos?.slice(0,3) }
+            { temperamentos }
         </div>
     </div>
     )

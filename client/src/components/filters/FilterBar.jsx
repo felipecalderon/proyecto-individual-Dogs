@@ -45,6 +45,9 @@ const FilterBar = () => {
     // }
 
     const handleReset = () => {
+        setForm({...form,
+            search: ''
+        })
         dispatch(getAllDogs())
     }
     
@@ -55,7 +58,7 @@ const FilterBar = () => {
     return (
     <>
     <div className={styles.filternav}>
-        <select onChange={handleSelect}>
+        <select onChange={handleSelect} style={{width: '6em'}}>
                 <option value="AZ">A-Z</option>
                 <option value="ZA">Z-A</option>
                 <option value="RANDOM">Aleatorio</option>

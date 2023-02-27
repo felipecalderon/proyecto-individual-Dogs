@@ -8,6 +8,7 @@
     padding: 1em 0;
     gap: 2em;
 }
+
 .filternav button:hover, .filternav input:focus{
     border-color: #aaa;
     box-shadow: 0 0 1px 3px #e79b86;
