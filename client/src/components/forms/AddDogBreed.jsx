@@ -13,12 +13,14 @@ const Form = () => {
     const [tempsDisplay, setTempsDisplay] = useState([])
     const [showPreview, setShowPreview] = useState(false)
 
-    const sumbited = async () => {
-      const dp = await dispatch(createDog(values))
-      if(dp.original.detail) return alert(dp.original.detail)
+    const sendForm = async () => {
+        const dp = await dispatch(createDog(values))
+        if(dp.original?.detail) return alert(dp.original.detail)
+        alert(`Raza: ${values.nombre} creada exitosamente`)
+        window.location.reload(false)
     }
 
-    const { values, errors, handleChange, handleSubmit } = useForm(sumbited, validate);
+    const { values, errors, handleChange, handleSubmit } = useForm(sendForm, validate);
     const filterTemps = () => {
         dispatch(filterTemperaments(values.buscar))
     }
@@ -33,6 +35,13 @@ const Form = () => {
       const filtro = tempsDisplay.filter(t => t !== e.target.name)
       setTempsDisplay(filtro)
       dispatch(antiFilterTemp(e.target.name))
+    }
+
+    const handlePreview = (e) => {
+      setTimeout(() => {
+        myRef.current.scrollIntoView()
+      }, 50)
+      setShowPreview(true)
     }
     
     let dogpreview = {
@@ -49,13 +58,6 @@ const Form = () => {
       dispatch(getTemperaments())
       dispatch(filterTemperaments(''))
     }, [])
-
-    const handlePreview = (e) => {
-      setTimeout(() => {
-        myRef.current.scrollIntoView()
-      }, 50)
-      setShowPreview(true)
-    }
 
     return (
       <div style={{

@@ -3,26 +3,24 @@ import { useDispatch, useSelector } from "react-redux"
 import { getAllDogs } from "../../../redux/actions"
 import Cards from "../../cards/Cards"
 import FilterBar from "../../filters/FilterBar"
-import styles from '../../cards/cards.module.css'
 
 const Dogs = () => {
     const {dogs} = useSelector((state) => state)
     const dispatch = useDispatch()
-    const [bgImg, setBgImg] = useState('linear-gradient(#00939c, #b96a55)')
+    const [bg, setBg] = useState("https://images.unsplash.com/photo-1517196219270-aa1430c0189f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
+
     useEffect(() => {
         dispatch(getAllDogs())
-    }, [dispatch])
-
-    useEffect(() => {
-        fetch("https://api.unsplash.com/photos/random/?topic=textures-patterns&client_id=1eXsHaR8jPSWv-89XXEeHJ9Z6oEihkGef6tM5Iu2Ca4")
+        fetch("https://api.unsplash.com/photos/random/?collections=6221583&orientation=landscape&client_id=1eXsHaR8jPSWv-89XXEeHJ9Z6oEihkGef6tM5Iu2Ca4")
         .then(res => res.json())
-        .then(data => setBgImg(data.urls.regular))
-      }, [])
+        .then(data => setBg(data.urls.regular))
+    }, [])
 
     return(
-        <div style={{
-            backgroundImage: bgImg,
-        }}>
+        <div style={{ 
+            backgroundImage: `url(${bg})`,
+            backgroundSize: 'cover' 
+    }}>
             <FilterBar />
             <Cards dogs={dogs}/>
         </div>

@@ -23,10 +23,9 @@ const DogDetail = () => {
                 <img src={dogDetail.imagen} alt={dogDetail.nombre} width="400"/>
                 <div className={styles.detail}>
                     <h4>Caracteristicas: </h4>
-
-                    {   dogDetail.temperaments?.map(temp => {
-                        if(temp.name) return <li>{temp.name}</li>
-                        return <li>{temp}</li> })}
+                    <div className={styles.temperaments}>
+                        {dogDetail.temperaments?.map(temp => <button key={temp.name || temp}>{temp.name || temp}</button> )}
+                    </div>
                     {
                         (dogDetail.pesomin && dogDetail.pesomax)
                         ? <span>Peso: entre {dogDetail.pesomin} y {dogDetail.pesomax}kg</span> 

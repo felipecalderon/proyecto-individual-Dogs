@@ -28,7 +28,6 @@ const useForm = (callback, validate) => {
   
     const handleChange = (event) => {
       event.preventDefault();
-      console.log(values)
       setValues(values => {
         return ({ ...values, 
           [event.target.name]: event.target.value 

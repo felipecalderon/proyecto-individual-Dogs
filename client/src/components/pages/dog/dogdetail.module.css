@@ -1,8 +1,8 @@
 h2{
 	text-align: center;
-	color: bisque;
-	margin-top: 1em;
-	margin-bottom: 2em;
+	color: white;
+	margin-top: 2em;
+	margin-bottom: 3em;
 }
 h4{
 	color: yellow;
@@ -14,8 +14,22 @@ h4{
     flex-direction: column;
     gap: .8em;
 	transition: all 300ms;
+	width: 33%;
+}
+.temperaments{
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	cursor: auto
 }
 
+.temperaments button{
+	padding: .3em .6em;
+    border-radius: .3em;
+    background-color: #ffffff00;
+    color: white;
+    border: #fff solid 2px;
+}
 .container{
 	padding-bottom: 10em;
 }
