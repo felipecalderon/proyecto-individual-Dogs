@@ -1,4 +1,4 @@
-const { findDogs, findDogById, newBreedDog } = require('../controllers/dog.controller')
+const { findDogs, findDogById, newBreedDog, updateDataDog, removeDog } = require('../controllers/dog.controller')
 
 const getDogs = async (req, res) => {
     try {
@@ -28,4 +28,21 @@ const createDog = async (req,res) => {
     }
 }
 
-module.exports = {createDog, getDogs, getDogById}
+const updateDog = async (req, res) => {
+    try {
+        const doge = await updateDataDog(req.params,req.body)
+        res.status(200).json(doge)
+    } catch (error) {
+        res.status(404).json(error)
+    }
+}
+
+const deleteDog = async (req, res) => {
+    try {
+        const doge = await removeDog(req.params)
+        res.status(200).json(doge)
+    } catch (error) {
+        res.status(404).json(error)
+    }
+}
+module.exports = {createDog, getDogs, getDogById, updateDog, deleteDog}

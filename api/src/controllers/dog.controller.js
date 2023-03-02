@@ -106,11 +106,35 @@ const newBreedDog = async ({nombre, imagen, alturamin, alturamax, pesomin, pesom
             vidamax, 
             arrTemperamentosId
         })
-        if(arrTemperamentosId && arrTemperamentosId.length > 0) await doge.addTemperament(arrTemperamentosId)
+        if(arrTemperamentosId && arrTemperamentosId.length > 0) {
+            const addDogTemperament = await doge.addTemperament(arrTemperamentosId)
+            console.log(addDogTemperament)
+            if(addDogTemperament.length === 0) throw 'No se pudo'
+        }
         return doge
     } catch (error) {
         throw error
     }
 }
 
-module.exports = {findDogs, findDogById, newBreedDog}
+const updateDataDog = async ({id}, {nombre, imagen, alturamin, alturamax, pesomin, pesomax, vidamin, vidamax, arrTemperamentosId}) => {
+    try{
+        console.log(id)
+        const findUsr = await Dog.findByPk(id)
+        if(!findUsr) throw 'Dog no encontrado'
+        findUsr.nombre = nombre
+        return findUsr.save()
+    } catch (error) {
+        throw error
+    }
+}
+
+const removeDog = async ({id}) => {
+    try {
+        const borrarDog = await Dog.destroy({where: {id}})
+        return borrarDog
+    } catch (error) {
+        throw error
+    }
+}
+module.exports = {findDogs, findDogById, newBreedDog, updateDataDog, removeDog}

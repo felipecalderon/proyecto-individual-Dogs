@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {createDog, getDogs, getDogById} = require('./dogs');
+const {createDog, getDogs, getDogById, updateDog, deleteDog} = require('./dogs');
 const {createTemperament, getTemperaments, insertDataApi} = require('./temperament');
 
 
@@ -9,6 +9,8 @@ const router = Router();
 router.get('/dogs', getDogs);
 router.get('/dogs/:id', getDogById);
 router.post('/dogs', createDog);
+router.put('/dogs/:id', updateDog);
+router.delete('/dogs/:id', deleteDog);
 
 // RUTAS TEMPERAMENTS
 router.post('/temperaments', createTemperament);
