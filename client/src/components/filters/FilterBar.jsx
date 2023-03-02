@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { orderBreeds, filterBreeds, getAllDogs, filterOrigin, filterDogTemperaments, filterHeight } from "../../redux/actions"
+import { orderBreeds, filterBreeds, getAllDogs, filterOrigin, filterDogTemperaments } from "../../redux/actions"
 import styles from "./filterbar.module.css"
 
 const FilterBar = () => {
