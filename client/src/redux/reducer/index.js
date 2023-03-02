@@ -12,7 +12,6 @@ import {
    GET_TEMPERAMENTS,
    FILTER_OPTIONS_TEMPS,
    FILTER_TEMPERAMENT,
-   FILTER_ALTURA
  } from '../actions';
  
  const initialState = {
@@ -21,15 +20,7 @@ import {
     filteredDogs: [],
     dogsTemperament: [],
     temperaments: [],
-    filteredTemps: [],
-    rulesValidation: {
-      pesomin: 5,
-      pesomax: 80,
-      alturamin: 15,
-      alturamax: 100,
-      vidamin: 2,
-      vidamax: 35
-    }
+    filteredTemps: []
  };
  
  const rootReducer = (state = initialState, action) => {
@@ -37,6 +28,7 @@ import {
       return breed.nombre.toUpperCase().includes(action.payload) 
       || breed.id === Number(action.payload) 
    }
+
    const originFilter = (breed) => {
       if(action.payload === 'all') return true
       return breed.origen.includes(action.payload) 
@@ -55,17 +47,8 @@ import {
       return temp.name.toLowerCase() !== action.payload.toLowerCase()
    }
 
-   const heigthFilter = (dog) => {
-      const {min, max} = action.payload
-      return dog.alturamin >= min && dog.alturamax <= max
-   }
-
    switch (action.type) {
-      case FILTER_ALTURA: return {
-         ...state,
-         filteredDogs: state.dogs.filter(heigthFilter)
-      }
-      case CREATE_DOG: return {
+   case CREATE_DOG: return {
          ...state
    }
 

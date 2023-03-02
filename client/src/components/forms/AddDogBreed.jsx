@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import DogCard from "../cards/DogCard";
 
 const Form = () => {
-    const { filteredTemps } = useSelector(state => state)
+    const { filteredTemps, temperaments } = useSelector(state => state)
     const dispatch = useDispatch()
     const myRef = useRef(null)
     const [tempsDisplay, setTempsDisplay] = useState([])
@@ -33,8 +33,10 @@ const Form = () => {
 
     const cleanOption = (e) => {
       const filtro = tempsDisplay.filter(t => t !== e.target.name)
-      setTempsDisplay(filtro)
+      const {id} = temperaments.find(t => t.name === e.target.name)
       dispatch(antiFilterTemp(e.target.name))
+      setTempsDisplay(filtro)
+      values.arrTemperamentosId = values.arrTemperamentosId.filter(t => t !== id)
     }
 
     const handlePreview = (e) => {
@@ -43,6 +45,18 @@ const Form = () => {
       }, 50)
       setShowPreview(true)
     }
+    
+    useEffect(() => {
+      dispatch(getTemperaments())
+      dispatch(filterTemperaments(''))
+    }, [])
+
+    useEffect(() => {
+      let spaces = values?.nombre?.split(' ')
+      let str2 = spaces?.map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+      let unido = str2?.join(' ')
+      values.nombre = unido
+    }, [values.nombre])
     
     let dogpreview = {
       temperaments: tempsDisplay,
@@ -53,12 +67,6 @@ const Form = () => {
       pesomin: values.pesomin,
       pesomax: values.pesomax
     }
-  
-    useEffect(() => {
-      dispatch(getTemperaments())
-      dispatch(filterTemperaments(''))
-    }, [])
-
     return (
       <div style={{
         backgroundImage: 'linear-gradient(#00939c, #b96a55)',

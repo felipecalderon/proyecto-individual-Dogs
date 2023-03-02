@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getDogDetail } from "../../../redux/actions"
@@ -8,13 +8,20 @@ const DogDetail = () => {
     const {id} = useParams()
     const dispatch = useDispatch()
     const {dogDetail} = useSelector(state => state)
+    const [bg, setBg] = useState("linear-gradient(#00939c, #b96a55)")
     useEffect(() => {
         dispatch(getDogDetail(id))
     }, [])
 
+    useEffect(() => {
+        fetch(`https://api.unsplash.com/photos/random/?query=dog+${dogDetail.nombre}&orientation=landscape&client_id=1eXsHaR8jPSWv-89XXEeHJ9Z6oEihkGef6tM5Iu2Ca4`)
+        .then(res => res.json())
+        .then(data => setBg(`url(${data.urls.regular})`))
+    }, [])
     return(
         <div style={{
-            backgroundImage: 'linear-gradient(#00939c, #b96a55)',
+            backgroundImage: bg,
+            backgroundSize: "cover",
             paddingTop: '1em',
         }}>
         <h2>Raza: {dogDetail.nombre}</h2>

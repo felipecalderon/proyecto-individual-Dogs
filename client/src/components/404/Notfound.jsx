@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import styles from './notfound.module.css'
-const url = 'https://api.giphy.com/v1/gifs/search?q=404+not+found&api_key=kN5fNTLnul4hIrxbTg9XqYSbNSqwjkAc'
+const url = 'https://api.giphy.com/v1/gifs/search?q=not+found&api_key=kN5fNTLnul4hIrxbTg9XqYSbNSqwjkAc'
 
 const Not = () => {
     const [gif, setGif] = useState('https://cdn.dribbble.com/users/1680506/screenshots/5472165/animal.gif')
